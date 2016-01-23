@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private Button scanButton;
     private ArrayList<ScanObject> values = new ArrayList<>();
     private GroceryAdapter groceryAdapter;
-    private int counter =1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,24 +77,21 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent)
     {
+        Boolean newItem = true;
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,intent);
         if (scanningResult != null) {
             String scanContent = scanningResult.getContents();
-            if (counter==1){
-                values.add(new ScanObject(scanContent,scanContent,1,"10.0"));
-                counter++;
-            }
-            else{
                 for (ScanObject scan : values) {
                     if (scanContent.equals(scan.getScanCode())) {
                         scan.increaseQuantity();
+                        newItem=false;
                         break;
-                    } else {
-                        values.add(new ScanObject(scanContent, scanContent, 1, "20.0"));
                     }
             }
-            }
 
+            if (newItem){
+                values.add(new ScanObject(scanContent,scanContent,1,"$10.00"));
+            }
 
             groceryAdapter.notifyDataSetChanged();
 

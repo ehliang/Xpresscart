@@ -3,16 +3,40 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingBottom="0dp"
     tools:context="com.pennapps.xpresscart.LoginActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="left"
+            android:src="@drawable/logo"/>
+
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:text="in partnership with"
+            android:textColor="@android:color/black"
+            android:paddingRight="85dp"
+            android:id="@+id/textView"
+            android:layout_gravity="right" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:paddingLeft="200dp"
             android:src="@drawable/capitalone"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="10dp"
+            android:text="Sign in with your Capital One Account "
+            android:layout_gravity="center"/>
 
         <EditText
             android:id="@+id/username"
@@ -29,10 +53,20 @@
             android:inputType="textPassword"/>
         <Button
             android:id="@+id/login_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@android:color/transparent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:onClick="login"
             android:text="login"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="italic"
+            android:text="Don't have an account? Sign up now!"
+            android:onClick="newOnClick"/>
     </LinearLayout>
 
 
