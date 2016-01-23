@@ -3,6 +3,7 @@ package com.pennapps.xpresscart;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -16,10 +17,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.reimaginebanking.api.java.NessieClient;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
     private static Button loginButton;
-    private static TextView username,password;
+    private static TextView username, password;
     NessieClient nessieClient = NessieClient.getInstance();
 
     @Override
@@ -30,20 +31,8 @@ public class LoginActivity extends AppCompatActivity {
         username = (TextView) findViewById(R.id.username);
         password = (TextView) findViewById(R.id.password);
         nessieClient.setAPIKey("73f7573087e61516c5fc1304f6b9e985");
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try
-                {
-//                    nessieClient.getCustomerAccounts();
-                }
-                catch(Exception e)
-                {
-                    e.printStackTrace();
-                }
+//        new login().execute("");
 
-            }
-        });
     }
 
     @Override
@@ -67,43 +56,37 @@ public class LoginActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-//
-//    private class login extends AsyncTask<String, Void, Void>
-//    {
-//        ProgressDialog dialog = ProgressDialog.show(actvity.this, "", "Loading, Please wait...");
+
+//    private class login extends AsyncTask<String, Void, Void> {
+//        Context c;
+//        ProgressDialog dialog = ProgressDialog.show(activity.this, "", "Loading, Please wait...");
 //
 //        @Override
-//        protected int doInBackground(String...params)
-//        {
-//            try{
-//
-//            }
-//            catch(Exception e)
-//            {
+//        protected int doInBackground(String... params) {
+//            try {
+//                Boolean response = true;
+//            } catch (Exception e) {
 //                e.printStackTrace();
 //            }
-//            return ;
+//            return 0;
 //        }
 //
-//        protected void onPreExecute()
-//        {
+//        protected void onPreExecute() {
 //            dialog.show();
 //        }
-//        protected void onPostExecute(int result)
-//        {
-//            if(dialog!=null)
+//
+//        protected void onPostExecute(int result) {
+//            if (dialog != null)
 //                dialog.dismiss();
-//            if(result){
-//                toast.setText("No User Found, please try again!");
-//                toast.show();
-//            }else{
-//                Intent myIntent = new Intent(ctx, main.class);
-//                myIntent.putExtra("user", user);
+//            if (result) {
+//
+//            } else {
+//                Intent myIntent = new Intent(c, MainActivity.class);
 //                startActivity(myIntent);
+//            }
+//
+//
 //        }
 //
-//
-//
 //    }
-
 }
