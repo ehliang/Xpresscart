@@ -42,14 +42,14 @@
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="User Email"
+            android:text="abc"
             android:inputType="textEmailAddress"/>
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:text="abc"
             android:inputType="textPassword"/>
         <Button
             android:id="@+id/login_button"
