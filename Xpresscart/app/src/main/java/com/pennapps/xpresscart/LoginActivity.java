@@ -24,11 +24,11 @@ import com.reimaginebanking.api.java.models.Merchant;
 
 import java.util.ArrayList;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity {
 
     private static Button loginButton;
     private static TextView username, password;
-    NessieClient nessieClient = NessieClient.getInstance();
+    private NessieClient nessieClient = NessieClient.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +38,26 @@ public class LoginActivity extends Activity {
         username = (TextView) findViewById(R.id.username);
         password = (TextView) findViewById(R.id.password);
         nessieClient.setAPIKey("73f7573087e61516c5fc1304f6b9e985");
-//        new login().execute("");
-        nessieClient.getMerchants(new NessieResultsListener(){
+
+        loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onSuccess(Object result, NessieException e){
-                if(e == null){
-                    //There is no error, do whatever you need here.
-                    // Cast the result object to the type that you are requesting and you are good to go
-                    ArrayList<Merchant> merchants = (ArrayList<Merchant>) result;
-                    for (Merchant merc : merchants){
-                        Log.i("Merchant", merc.getName());
-                    }
-                } else {
-                    //There was an error. Handle it here
-                    Log.e("Error", e.toString());
+            public void onClick(View v)
+            {
+                try{
+                if (username.getText().toString().equals("abc") && password.getText().toString().equals("abc"))
+                {
+                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(i);
                 }
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+
             }
+
         });
+
     }
 
     @Override
@@ -68,46 +71,10 @@ public class LoginActivity extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
 
-//    private class login extends AsyncTask<String, Void, Void> {
-//        Context c;
-//        ProgressDialog dialog = ProgressDialog.show(activity.this, "", "Loading, Please wait...");
-//
-//        @Override
-//        protected int doInBackground(String... params) {
-//            try {
-//                Boolean response = true;
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            return 0;
-//        }
-//
-//        protected void onPreExecute() {
-//            dialog.show();
-//        }
-//
-//        protected void onPostExecute(int result) {
-//            if (dialog != null)
-//                dialog.dismiss();
-//            if (result) {
-//
-//            } else {
-//                Intent myIntent = new Intent(c, MainActivity.class);
-//                startActivity(myIntent);
-//            }
-//
-//
-//        }
-//
-//    }
+
 }
