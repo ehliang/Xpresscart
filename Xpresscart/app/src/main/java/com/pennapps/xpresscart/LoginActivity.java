@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private static TextView username, password;
     private NfcAdapter nfcAdapter;
     private NessieClient nessieClient = NessieClient.getInstance();
+    private String user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,18 @@ public class LoginActivity extends AppCompatActivity {
         username = (TextView) findViewById(R.id.username);
         password = (TextView) findViewById(R.id.password);
         nessieClient.setAPIKey("73f7573087e61516c5fc1304f6b9e985");
-
+        nessieClient.getCustomers(new NessieResultsListener() {
+            @Override
+            public void onSuccess(Object o, NessieException e) {
+                if (e == null) {
+                    ArrayList<Customer> customers = (ArrayList<Customer>) o;
+                    user_id=customers.get(0).get_id();
+                }
+                else{
+                    Log.e("Error", e.toString());
+                }
+            }
+        });
 
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -61,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 try{
-                if (username.getText().toString().equals("abc") && password.getText().toString().equals("abc"))
+                if (username.getText().toString().equals("johnsmith@mail.com") && password.getText().toString().equals("abc"))
                 {
                     Intent i = new Intent(getApplicationContext(),MerchantActivity.class);
                     startActivity(i);

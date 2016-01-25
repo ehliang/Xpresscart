@@ -61,7 +61,7 @@ public class GroceryAdapter extends ArrayAdapter<ScanObject> {
         TextView price = (TextView) convertView.findViewById(R.id.price);
         TextView quantity = (TextView) convertView.findViewById(R.id.quantity);
         itemName.setText(values.get(position).getItemName());
-        price.setText(values.get(position).getPrice());
+        price.setText("$" + String.valueOf(values.get(position).getPrice()));
         quantity.setText(String.valueOf(values.get(position).getQuantity()));
 
         return convertView;

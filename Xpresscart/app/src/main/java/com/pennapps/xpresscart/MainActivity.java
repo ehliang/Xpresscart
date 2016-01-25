@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private String mActivityTitle;
+    private double finalCost =25.03;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,24 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        Button checkout = (Button) findViewById(R.id.checkout_button);
+
+        checkout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                try{
+                        Intent i = new Intent(getApplicationContext(),CheckoutActivity.class);
+                        i.putExtra("Final Cost", finalCost);
+                        startActivity(i);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+
+        });
 
         final ListView listview = (ListView) findViewById(R.id.listview);
         groceryAdapter = new GroceryAdapter(this, values);
@@ -90,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         };
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+
     }
 
     private void addDrawerItems() {
@@ -145,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         return true;
     }
 
+
     @Override
     public void onClick(View view)
     {
@@ -167,8 +189,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             }
 
             if (newItem){
-                values.add(new ScanObject(scanContent,scanContent,1,"$10.00"));
+                values.add(new ScanObject(scanContent,scanContent,1,3.56));
             }
+
 
             groceryAdapter.notifyDataSetChanged();
 

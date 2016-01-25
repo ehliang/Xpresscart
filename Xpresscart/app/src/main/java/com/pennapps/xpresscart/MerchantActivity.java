@@ -22,6 +22,8 @@ import com.reimaginebanking.api.java.NessieException;
 import com.reimaginebanking.api.java.NessieResultsListener;
 import com.reimaginebanking.api.java.models.Customer;
 import com.reimaginebanking.api.java.models.Merchant;
+import com.reimaginebanking.api.java.models.Purchase;
+import com.reimaginebanking.api.java.models.RequestResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
@@ -44,20 +46,23 @@ public class MerchantActivity extends Activity {
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         txtTagContent = (TextView) findViewById(R.id.cart_id);
 
-//        nessieClient.getMerchant("56241a13de4bf40b171127fe", new NessieResultsListener() {
-//
-//            @Override
-//            public void onSuccess(Object result, NessieException e) {
-//                if(e == null){
-//                    //There is no error, do whatever you need here.
-//                    // Cast the result object to the type that you are requesting and you are good to go
-//                   merchantName.setText(Merchant);
-//                } else {
-//                    //There was an error. Handle it here
-//                    Log.e("Error", e.toString())
-//                }
-//            }
-//        });
+        nessieClient.getMerchant("56241a13de4bf40b171127fe", new NessieResultsListener() {
+
+            @Override
+            public void onSuccess(Object result, NessieException e) {
+                if(e == null){
+                    //There is no error, do whatever you need here.
+                    // Cast the result object to the type that you are requesting and you are good to go
+                   Merchant newMerchant = (Merchant) result;
+                    merchantName.setText(newMerchant.getName());
+                    Purchase sample = new Purchase.Builder().merchant("1234").amount(10.0).build();
+//                    RequestResponse
+                } else {
+                    //There was an error. Handle it here
+                    Log.e("Error", e.toString());
+                }
+            }
+        });
 
     }
 
@@ -72,7 +77,7 @@ public class MerchantActivity extends Activity {
 
             String tagContent = getTextFromNdefRecord(ndefRecord);
 
-            txtTagContent.setText(tagContent);
+            txtTagContent.setText("Cart Id: "+ tagContent);
 
         }else
         {

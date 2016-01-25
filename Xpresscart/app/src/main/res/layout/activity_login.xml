@@ -42,7 +42,7 @@
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="abc"
+            android:text="johnsmith@mail.com"
             android:inputType="textEmailAddress"/>
 
         <EditText

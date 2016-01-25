@@ -9,9 +9,9 @@ public class ScanObject {
     private String itemName;
     private String scanCode;
     private int quantity;
-    private String price;
+    private double price;
 
-    public ScanObject(String itemName, String scanCode, int quantity, String price)
+    public ScanObject(String itemName, String scanCode, int quantity, double price)
     {
         this.itemName = itemName;
         this.scanCode = scanCode;
@@ -52,7 +52,7 @@ public class ScanObject {
     {
         quantity++;
     }
-    public String getPrice()
+    public double getPrice()
     {
         return price;
     }
